@@ -631,6 +631,7 @@ namespace OpenVPNUtils
                         {
                             m_ovpnComm.send("username '" + pwType + "' " +
                                 ManagementParser.encodeMsg(username));
+                            Thread.Sleep(200);
                             //wait for processing by OpenVPN or it might not always process the password correctly.
                             m_ovpnComm.processManagementConnectionLine();
                             m_ovpnComm.send("password '" + pwType + "' " +
