@@ -51,8 +51,23 @@ namespace OpenVPNUtils
                     {
                         args.Add(capture.Value);
                     }
+                    
+                    if (!directives.ContainsKey(key))
+                    {
+                        directives.Add(key, args.ToArray());
+                    }
+                    else
+                    {
+                        //convat values with asme directive
+                        var first = directives[key];
+                        var second = args.ToArray();
+                        string[] result = new string[first.Length + second.Length];
+                        first.CopyTo(result, 0);
+                        second.CopyTo(result, first.Length);
 
-                    directives.Add(key, args.ToArray());
+                        directives[key] = result;
+                    }
+
                     args.Clear();
                 }
                 else if (!string.IsNullOrEmpty(match.Groups["tag"].Value))
