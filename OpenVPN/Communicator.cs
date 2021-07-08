@@ -210,7 +210,8 @@ namespace OpenVPNUtils
             if(m_swrite != null)
                 m_swrite.Close();
 
-            m_tcpC.Close();
+            if (m_tcpC != null)
+                m_tcpC.Close();
             m_tcpC = new TcpClient();
         }
 
